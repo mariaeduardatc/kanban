@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+
+header{
+    background-color: black;
+
+    display: flex;
+    align-items: center;
+    height: 5rem;
+
+}
+
+.pages{
+    
+    margin-left: auto;
+    padding: 0 1.5rem;
+}
+
+header a{
+    color: whitesmoke;
+    margin-right: 0.5rem;
+}
+
+.logo img{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    padding: 4px;
+    margin-left: 3rem;
+}
+
+.home{
+    display: flex;
+    padding: 50px;
+}
+
+.section{
+    padding: 3px;
+}
+
+.header{
+    background-color: black;
+    color: whitesmoke;
+} 
+
+.tasks{
+    border: solid;
+    padding:150px;
+}
