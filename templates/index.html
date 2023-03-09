@@ -20,23 +20,26 @@
 
 <body>
     <header>
-        <div class="logo">
+        <div id="logo">
             <img src="../static/assets/icon.jpeg" alt="logo">
         </div>
-
-        <div class="pages">
-            <h3>
-                <a href="/">home</a>
-                <a href="">profile</a>
-            </h3>
+        <button id="open-modal-button">+</button>
+        <div class="modal-container" id="modal-container">
+            <div class="modal" id="modal">
+                <button id="close-modal-symbol">Close</button>
+                <form action="/add" method="POST">
+                    <input type="text" name="content" id="content">
+                    <input type="submit" value="Add Task">
+                </form>
+            </div>
         </div>
     </header>
 
-    <!-- In the future I want each section to have its own page -->
+    
     <main>
 
             {% if tasks|length < 1 %}
-                <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+            <h4 style="text-align: center">There are no tasks. Create one below!</h4>
             <div class="home">
                 <div class="section" id="someday">
                     <div class="header">Someday</div>
@@ -74,15 +77,26 @@
             {% else %}
             <div class="home">
                 <div class="section" id="someday">
-                    <div class="header">Someday</div>
+                    <div class="header">
+                        <h3>Someday</h3>
+                    </div>
                         <div class="tasks">
-                            {% for task in someday %}
+                            {% for task in tasks[0] %}
                             <div class="task">
                                 <div class="header">
-                                    <a href="/delete/{{task.id}}">
+
+                                    <a href="/previous/{{task.id}}">
                                         <img
                                             type="submit"
-                                            src="/static/img/arrow.png"
+                                            src="/static/assets/arrowright.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/next/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowleft.svg"
                                             class="hidden"
                                         />
                                     </a>
@@ -90,7 +104,15 @@
                                     <a href="/edit/{{task.id}}">
                                         <img
                                             type="submit"
-                                            src="/static/img/check.svg"
+                                            src="/static/assets/pencil.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/delete/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/trash.svg"
                                             class="hidden"
                                         />
                                     </a>
@@ -101,20 +123,155 @@
                             </div>
                         {% endfor %}
                         </div>
-                    </div>
                 </div>
-                {% endif %}
+                
+                
+                <div class="section" id="today">
+                    <div class="header">
+                        <h3>Today</h3>
+                    </div>
+                        <div class="tasks">
+                            {% for task in tasks[1] %}
+                            <div class="task">
+                                <div class="header">
+
+                                    <a href="/previous/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowright.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/next/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowleft.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/edit/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/pencil.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/delete/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/trash.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    {{ task.content }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                </div>
+                
+                <div class="section" id="tomorrow">
+                    <div class="header">
+                        <h3>Tomorrow</h3>
+                    </div>
+                        <div class="tasks">
+                            {% for task in tasks[2] %}
+                            <div class="task">
+                                <div class="header">
+
+                                    <a href="/previous/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowright.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/next/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowleft.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/delete/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/trash.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    {{ task.content }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                </div>
+                
+                <div class="section" id="next-week">
+                    <div class="header">
+                        <h3>Next Week</h3>
+                    </div>
+                        <div class="tasks">
+                            {% for task in tasks[3] %}
+                            <div class="task">
+                                <div class="header">
+
+                                    <a href="/previous/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowright.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/next/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/arrowleft.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/edit/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/pencil.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+
+                                    <a href="/delete/{{task.id}}">
+                                        <img
+                                            type="submit"
+                                            src="/static/assets/trash.svg"
+                                            class="hidden"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    {{ task.content }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                </div>
+                
             </div>
+            {% endif %}
 
         <div class="form">
-            <form action="/add" method="POST">
-                <input type="text" name="content" id="content">
-                <input type="submit" value="Add Task">
-            </form>
+            
         </div>
-    </main>
-
-  
-    
+    </main>    
 </body>
+<script src="/static/main.js"></script>
 </html>

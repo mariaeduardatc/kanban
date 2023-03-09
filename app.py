@@ -10,14 +10,14 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
-
 class Todo(db.Model):
     '''
         Initializes the database
     '''
     id = sa.Column(sa.Integer, primary_key=True)
     content = sa.Column(sa.String(500), nullable=False)
-    date_created = sa.Column(sa.DateTime, default=datetime.date)
+    status = sa.Column(sa.Integer, default=0)
+    date_created = sa.Column(sa.DateTime, default=datetime.date.today())
 
     def __repr__(self):
         '''
@@ -31,57 +31,63 @@ with app.app_context():
 @app.route('/')
 def home(): 
     # how to use this in each column?
-    tasks = Todo.query.order_by(Todo.date_created).all()
+    tasks = []
+    for i in range(4):
+        tasks.append(Todo.query.order_by(Todo.date_created).filter(Todo.status == i).all())
+    print(tasks)
     return render_template('index.html', tasks=tasks)
-
-
-@app.route('/move', methods=['POST'])
-def move():
-    pass
 
 
 @app.route('/add', methods=['POST'])
 def add():
     if request.method == 'POST':
         task_content = request.form['content']
+        print(task_content)
         new_task = Todo(content=task_content)
+        print(new_task.content)
 
         # add happening here
         try:
             db.session.add(new_task)
             db.session.commit()
             return redirect('/')
-        except:
+        except Exception as e:
             return 'There was an issue adding your task'
 
 
-@app.route('/edit/<int:id>', methods=['POST'])
-def edit(id):
-    task = Todo.query.get_or_404(id)
 
-    if request.method == 'POST':
-        task.content = request.form['content']
-
-        try:
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'The task could not be updated'
-
-    else:
-        return render_template('update.html', task=task)
-
-
-@app.route('/delete/<int:id>', methods=['POST'])
+@app.route('/delete/<int:id>')
 def delete(id):
     deleted_task = Todo.query.get_or_404(id)
 
-    try:
+    try: 
         db.session.delete(deleted_task)
         db.session.commit()
         return redirect('/')
     except:
         return 'The task could not be deleted'
+    
+@app.route('/next/<int:id>')
+def next(id):
+    next_task = Todo.query.get_or_404(id)
+
+    try: 
+        next_task.status += 1
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'The task could not be moved'
+    
+@app.route('/previous/<int:id>')
+def previous(id):
+    next_task = Todo.query.get_or_404(id)
+
+    try: 
+        next_task.status -= 1
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'The task could not be moved'
 
 
 # Main driver function 
