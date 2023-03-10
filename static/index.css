@@ -1,3 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
 .modal-container {
     display: none;
     position: fixed;
@@ -22,22 +30,49 @@
     background-color: white;
 }
 
+#close-modal-symbol{
+    border: none;
+    background: none;
+}
+
+#close-modal-symbol img{
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+
 #item-id {
     display: none;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    color: black;
+form{
+    margin-left: 10px;
+    height: 50%;
+    width: 50%;
+    display: grid;
+
+    width: fit-content;
+    height: fit-content;
+}
+
+form #task-button{
+    background-color: #F5D4C3;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+#content{
+    height: 10rem;
+    width: 25rem
 }
 
 
 header{
     background-color: #F6EFE7;
-
     display: flex;
     align-items: center;
     height: 5rem;

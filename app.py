@@ -4,7 +4,6 @@ from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 
-
 # Create a flask object
 app = Flask(__name__) 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -16,6 +15,7 @@ class Todo(db.Model):
     '''
     id = sa.Column(sa.Integer, primary_key=True)
     content = sa.Column(sa.String(500), nullable=False)
+    tag= sa.Column(sa.String(500), nullable=False)
     status = sa.Column(sa.Integer, default=0)
     date_created = sa.Column(sa.DateTime, default=datetime.date.today())
 
@@ -42,13 +42,14 @@ def home():
 def add():
     if request.method == 'POST':
         task_content = request.form['content']
-        print(task_content)
         new_task = Todo(content=task_content)
-        print(new_task.content)
+
+        tag_content = request.form['tag']
+        new_tag = Todo(tag=tag_content)
 
         # add happening here
         try:
-            db.session.add(new_task)
+            db.session.add(new_task,new_tag)
             db.session.commit()
             return redirect('/')
         except Exception as e:
@@ -88,7 +89,6 @@ def previous(id):
         return redirect('/')
     except:
         return 'The task could not be moved'
-
 
 # Main driver function 
 if __name__ == '__main__':
