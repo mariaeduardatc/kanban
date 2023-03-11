@@ -5,8 +5,8 @@
    
     <link rel="stylesheet" href="../static/index.css">
     <link rel="icon" href="../static/assets/icon.jpeg" type="image"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,6 +97,7 @@
                                             type="submit"
                                             src="/static/assets/arrowright.svg"
                                             class="hidden"
+                                            id="left"
                                         />
                                     </a>
 
@@ -113,13 +114,32 @@
                                             type="submit"
                                             src="/static/assets/trash.svg"
                                             class="hidden"
+                                            id="trash"
                                         />
                                     </a>
                                 </div>
                                 <div class="content">
                                     {{ task.content }}
-                                    {{task.tag}}
                                 </div>
+
+                                {%if task.tag == 'normal'%}
+                                    <div class='tag' id="tag-normal">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'important'%}
+                                    <div class='tag' id="tag-important">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'extra'%}
+                                    <div class='tag' id="tag-extra">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+                                
                             </div>
                         {% endfor %}
                         </div>
@@ -140,6 +160,7 @@
                                             type="submit"
                                             src="/static/assets/arrowright.svg"
                                             class="hidden"
+                                            id="left"
                                         />
                                     </a>
 
@@ -156,13 +177,31 @@
                                             type="submit"
                                             src="/static/assets/trash.svg"
                                             class="hidden"
+                                            id="trash"
                                         />
                                     </a>
                                 </div>
                                 <div class="content">
                                     {{ task.content }}
-                                    {{task.tag}}
                                 </div>
+
+                                {%if task.tag == 'normal'%}
+                                    <div class='tag' id="tag-normal">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'important'%}
+                                    <div class='tag' id="tag-important">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'extra'%}
+                                    <div class='tag' id="tag-extra">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
                             </div>
                         {% endfor %}
                         </div>
@@ -182,6 +221,7 @@
                                             type="submit"
                                             src="/static/assets/arrowright.svg"
                                             class="hidden"
+                                            id="left"
                                         />
                                     </a>
 
@@ -198,13 +238,32 @@
                                             type="submit"
                                             src="/static/assets/trash.svg"
                                             class="hidden"
+                                            id="trash"
                                         />
                                     </a>
                                 </div>
                                 <div class="content">
                                     {{ task.content }}
-                                    {{task.tag}}
                                 </div>
+                                
+                                {%if task.tag == 'normal'%}
+                                    <div class='tag' id="tag-normal">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'important'%}
+                                    <div class='tag' id="tag-important">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'extra'%}
+                                    <div class='tag' id="tag-extra">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
                             </div>
                         {% endfor %}
                         </div>
@@ -224,6 +283,7 @@
                                             type="submit"
                                             src="/static/assets/arrowright.svg"
                                             class="hidden"
+                                            id="left"
                                         />
                                     </a>
 
@@ -239,13 +299,31 @@
                                             type="submit"
                                             src="/static/assets/trash.svg"
                                             class="hidden"
+                                            id="trash"
                                         />
                                     </a>
                                 </div>
                                 <div class="content">
                                     {{ task.content }}
-                                    {{task.tag}}
                                 </div>
+
+                                {%if task.tag == 'normal'%}
+                                    <div class='tag' id="tag-normal">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'important'%}
+                                    <div class='tag' id="tag-important">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
+
+                                {%if task.tag == 'extra'%}
+                                    <div class='tag' id="tag-extra">
+                                        <h3>{{ task.tag }}</h3>
+                                    </div>
+                                {%endif%}
                             </div>
                         {% endfor %}
                         </div>
