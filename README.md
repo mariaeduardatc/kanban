@@ -1,6 +1,6 @@
 # CS162 Kanban Board
 
-Link for demo:
+Link for demo: https://www.loom.com/share/f145f5b76d614f34b78d3dc962c34273
 
 ## Project Structure
 
