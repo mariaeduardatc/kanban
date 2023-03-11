@@ -26,7 +26,14 @@ class Todo(db.Model):
 
     def __repr__(self):
         '''
-            Returns the task in a string format
+            Parameter
+            ---------
+            None
+            
+            Returns
+            ------- 
+            Str:
+                the task in a string format
         '''
         return '<Task %r>' % self.id
 
@@ -37,6 +44,17 @@ with app.app_context():
 # URL mapping
 @app.route('/')
 def home():
+    '''
+        Renders the home page
+
+        Parameter
+        ---------
+        None
+
+        Returns
+        -------
+        Renders main page
+    '''
     # the kanban sections will be sublists inside tasks 
     tasks = []
     for i in range(4):
@@ -47,6 +65,17 @@ def home():
 # route for when we add tasks
 @app.route('/add', methods=['POST'])
 def add():
+    '''
+        Add task to the database 
+
+        Parameter
+        ---------
+        None
+
+        Returns
+        -------
+        None
+    '''
     if request.method == 'POST':
         # get the content and tag submitted by the form on the HTML
         task_content = request.form['content']
@@ -65,6 +94,18 @@ def add():
 # route for when we delete tasks
 @app.route('/delete/<int:id>')
 def delete(id):
+    '''
+        Moves task on the kanban
+        Changes task status 
+
+        Parameter
+        ---------
+        id
+
+        Returns
+        -------
+        None
+    '''
     deleted_task = Todo.query.get_or_404(id)
 
     # submission of info to the database (deletion in the database)
@@ -79,6 +120,18 @@ def delete(id):
 # route for when we move tasks to the right    
 @app.route('/next/<int:id>')
 def next(id):
+    '''
+        Moves task on the kanban
+        Changes task status 
+
+        Parameter
+        ---------
+        id
+
+        Returns
+        -------
+        None
+    '''
     next_task = Todo.query.get_or_404(id)
  
     try: 
@@ -93,6 +146,17 @@ def next(id):
 # route for when we move tasks to the left
 @app.route('/previous/<int:id>')
 def previous(id):
+    '''
+        Deletes task from the database 
+
+        Parameter
+        ---------
+        id
+
+        Returns
+        -------
+        None
+    '''
     next_task = Todo.query.get_or_404(id)
 
     try: 

@@ -11,9 +11,17 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class TestTask(unittest.TestCase):
     def setUp(self):
         '''
-          This function sets up the needed configurations for all the tests.
-          It is called automatically for each test case.
-          Will raise an error in case of any problems with the test.  
+            This function sets up the needed configurations for all the tests.
+            It is called automatically for each test case.
+            Will raise an error in case of any problems with the test.  
+
+            Parameter
+            ---------
+            None
+
+            Returns
+            -------
+            None
         '''
         self.flaskApp = app
         self.flaskApp.config['TESTING'] = True       
@@ -31,6 +39,14 @@ class TestTask(unittest.TestCase):
         '''
             The execution of this method is contingent upon the successful completion of the setUp() method, 
             irrespective of the result of the test method.
+
+            Parameter
+            ---------
+            None
+
+            Returns
+            -------
+            None
         '''
         pass
 
@@ -40,6 +56,14 @@ class TestTask(unittest.TestCase):
             - add task
             - move task (next, previous)
             - delete task
+
+            Parameter
+            ---------
+            None
+
+            Returns
+            -------
+            None
         '''
 
         # to test the 'add' of tasks we mock inputs to test what is being put in the database
@@ -76,3 +100,5 @@ class TestTask(unittest.TestCase):
             raise Exception('The task still exists')
         except:
             pass
+
+print(TestTask.__doc__)
